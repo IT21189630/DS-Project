@@ -9,7 +9,10 @@ const{
     getCoursById,
     getAllCourseIds,
     updateQuestionWithOptions,
-    addContentToCourse
+    addContentToCourse,
+    updateContent,
+    deleteContent,
+    deleteCourse
     
 } = require("../controllers/course.controller");
 
@@ -21,6 +24,9 @@ router.get("/get-course/:id", getCoursById);
 router.get("/get-all-course-ids", getAllCourseIds);
 router.patch("/update-course/:id", updateQuestionWithOptions);
 router.post("/add-content/:id", addContentToCourse);
+router.patch("/update-content/:id", updateContent);
+router.delete("/courses/:courseId/content/:id", deleteContent);
+router.delete("/delete-courses/:courseId", deleteCourse);
 
 // router.get("/get-option/:id", getOptionById);
 

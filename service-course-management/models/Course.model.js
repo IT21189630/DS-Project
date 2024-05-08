@@ -14,6 +14,11 @@ const CourseSchema = new Schema({
         required: true
     },
 
+    courseImage: {
+        type: String,
+        required: true
+    },
+
     specialization: {
         type: String,
         required: true
@@ -21,6 +26,11 @@ const CourseSchema = new Schema({
 
     courseDescription: {
         type: String,
+        required: true
+    },
+
+    coursePrice: {
+        type: Number,
         required: true
     },
 
@@ -32,11 +42,15 @@ const CourseSchema = new Schema({
     skills: [{
         type: String,
         required: true
-    }]
+    }],
+
+    courseStatus: {
+        type: String,
+    }
       
 });
 
-module.exports = mongoose.model("Question", CourseSchema);
+module.exports = mongoose.model("Course", CourseSchema);
 
 
 

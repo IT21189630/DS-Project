@@ -5,11 +5,11 @@ const asyncHandler = require('express-async-handler');
 
 
 const createCourse = asyncHandler(async (req, res) => {
-    const { courseId, courseName, specialization , courseDescription , courseContent , skills } = req.body;
+    const { courseId, courseName, courseImage, specialization , courseDescription , coursePrice , courseContent , skills , courseStatus } = req.body;
 
     try {
         // Create Options first
-        const createdContents = await CourseModel.insertMany(courseContent);
+        const createdContents = await ContentModel.insertMany(courseContent);
 
         // Extract IDs of created options
         const contentIds = createdContents.map(option => option._id);
@@ -18,14 +18,17 @@ const createCourse = asyncHandler(async (req, res) => {
         const newCourse = await CourseModel.create({
             courseId,
             courseName,
+            courseImage,
             specialization,
             courseDescription,
+            coursePrice,
             courseContent: contentIds, // Assign option IDs to the question
-            skills
+            skills,
+            courseStatus:'Pending'
         });
 
         // Update the question field in each option to reference the new question
-        await CourseModel.updateMany({ _id: { $in: contentIds } }, { $set: { courseId: newCourse._id } });
+        await ContentModel.updateMany({ _id: { $in: contentIds } }, { $set: { courseId: newCourse._id } });
 
         res.status(201).json({
             message: 'Course created successfully',
@@ -119,7 +122,7 @@ const getContentDetailsById = asyncHandler(async (req, res) => {
 
 const updateQuestionWithOptions = asyncHandler(async (req, res) => {
     const id = req.params.id; // Extract courseId from URL parameters
-    const { courseId, courseName, specialization, courseDescription, skills } = req.body;
+    const { courseId, courseName, courseImage , specialization, courseDescription, coursePrice , skills } = req.body;
 
     try {
         // Update the course
@@ -128,8 +131,10 @@ const updateQuestionWithOptions = asyncHandler(async (req, res) => {
             {
                 courseId,
                 courseName,
+                courseImage,
                 specialization,
                 courseDescription,
+                coursePrice,
                 skills
             },
             { new: true } // Return the updated document
@@ -181,6 +186,120 @@ const addContentToCourse = asyncHandler(async (req, res) => {
     }
 });
 
+const updateContent = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { lectureVideo, lectureName, lectureNote } = req.body;
+
+    try {
+        
+        // Find the content to update
+        const existingContent = await ContentModel.findById(id);
+
+        if (!existingContent) {
+            return res.status(404).json({ error: "Content not found" });
+        }
+
+        // Update the content
+        existingContent.lectureVideo = lectureVideo;
+        existingContent.lectureName = lectureName;
+        existingContent.lectureNote = lectureNote;
+
+        // Save the updated content
+        await existingContent.save();
+
+        res.status(200).json({
+            message: 'Content updated successfully',
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// const deleteContent = asyncHandler(async (req, res) => {
+//     const { id } = req.params;
+
+//     const checkInstance = await ContentModel.findById(id);
+
+//   if (checkInstance) {
+//     const response = await ContentModel.findByIdAndDelete(id);
+//     if (response) {
+//       res.status(200).json({
+//         message: "Content deleted"
+//       });
+//     } else {
+//       res.status(403).json("Content cannot be deleted");
+//     }
+//   } else {
+//     res.status(404).json("Content does not exist in the database");
+//   }
+// });
+
+const deleteContent = asyncHandler(async (req, res) => {
+    const { courseId, id } = req.params; // Corrected
+
+    try {
+        // Find the existing course
+        const existingCourse = await CourseModel.findOne({ courseId }); // Corrected
+
+        if (!existingCourse) {
+            return res.status(404).json({ error: "Course not found" });
+        }
+
+        // Find the content to delete
+        const existingContentIndex = existingCourse.courseContent.indexOf(id);
+
+        if (existingContentIndex === -1) {
+            return res.status(404).json({ error: "Content not found in the course" });
+        }
+
+        // Remove the content from the course's array
+        existingCourse.courseContent.splice(existingContentIndex, 1);
+
+        // Save the course with the updated content array
+        await existingCourse.save();
+
+        // Delete the content from the ContentModel
+        await ContentModel.findByIdAndDelete(id);
+
+        res.status(200).json({
+            message: 'Content deleted from course successfully',
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+const deleteCourse = asyncHandler(async (req, res) => {
+    const { courseId } = req.params;
+
+    try {
+        // Find the existing course
+        const existingCourse = await CourseModel.findOne({ courseId });
+
+        if (!existingCourse) {
+            return res.status(404).json({ error: "Course not found" });
+        }
+
+        // Delete the course's content from the ContentModel
+        await ContentModel.deleteMany({ _id: { $in: existingCourse.courseContent } });
+
+        // Delete the course
+        await CourseModel.findByIdAndDelete(existingCourse._id);
+
+        res.status(200).json({
+            message: 'Course and associated content deleted successfully',
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+
 
 
 
@@ -192,5 +311,8 @@ module.exports = {
     getCoursById,
     getAllCourseIds,
     updateQuestionWithOptions,
-    addContentToCourse
+    addContentToCourse,
+    updateContent,
+    deleteContent,
+    deleteCourse
 };

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ContentSchema = mongoose.Schema(
+const OptionSchema = mongoose.Schema(
 {
     lectureVideo: {
         type: String,
@@ -19,4 +19,4 @@ const ContentSchema = mongoose.Schema(
     
 });
 
-module.exports = mongoose.model("Content", ContentSchema);
+module.exports = mongoose.model("Content", OptionSchema);
