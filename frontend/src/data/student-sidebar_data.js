@@ -1,20 +1,23 @@
 import { FaLink } from "react-icons/fa6";
+import { MdOutlinePlayLesson } from "react-icons/md";
+import { RiShoppingCartFill } from "react-icons/ri";
+import { FaGraduationCap } from "react-icons/fa6";
 
 const studentSidebarData = [
   {
-    text: "Student Link 1",
-    icon: <FaLink />,
-    link: "/student/link",
+    text: "Courses",
+    icon: <MdOutlinePlayLesson />,
+    link: "/student/dashboard/courses",
   },
   {
-    text: "Student Link 2",
-    icon: <FaLink />,
-    link: "/student/link",
+    text: "Shopping Cart",
+    icon: <RiShoppingCartFill />,
+    link: "/student/dashboard/cart",
   },
   {
-    text: "Student Link 3",
-    icon: <FaLink />,
-    link: "/student/link",
+    text: "Enrollments",
+    icon: <FaGraduationCap />,
+    link: "/student/dashboard/enrollments",
   },
   {
     text: "Student Link 4",
