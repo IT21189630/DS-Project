@@ -24,7 +24,7 @@ const adminSidebarData = [
   {
     text: "Admin Link 5",
     icon: <FaLink />,
-    link: "/admin/link",
+    link: "/admin/dashboard/notification/",
   },
 ];
 

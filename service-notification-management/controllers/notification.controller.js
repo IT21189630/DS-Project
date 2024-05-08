@@ -27,10 +27,10 @@ const confirmEnrollment = async (req, res) => {
 const sendEmail = async (req, res) => {
   try {
     // Assume request body contains enrollment details
-    const { to, subject, text } = req.body;
+    const { recipientEmail, subject, text } = req.body;
 
     // Send confirmation email
-    await emailService.sendEmail(to, subject, text);
+    await emailService.sendEmail(recipientEmail, subject, text);
 
     res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {

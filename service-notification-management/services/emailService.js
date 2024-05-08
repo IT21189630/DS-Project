@@ -24,11 +24,11 @@ const sendConfirmationEmail = async (userId, courseId) => {
   }
 };
 
-const sendEmail = async (to, subject, text) => {
+const sendEmail = async (recipientEmail, subject, text) => {
   try {
     await transporter.sendMail({
       from: 'binodgayasri2001@gmail.com',
-      to: to,
+      to: recipientEmail,
       subject: subject,
       text: text
     });

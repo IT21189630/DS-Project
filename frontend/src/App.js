@@ -22,6 +22,8 @@ import StudentProtectedRoute from "./pages/route-guard-student/StudentProtectedR
 import StudentDashboard from "./pages/dashboard-student/StudentDashboard";
 import StudentMainPage from "./components/student/main-page/StudentMainPage";
 import HomePage from "./pages/home-page/HomePage";
+//notification page
+import NotificationPage from "./pages/notification/NotificationPage";
 
 function App() {
   return (
@@ -44,6 +46,7 @@ function App() {
               path="/admin/dashboard/create-admin/"
               element={<AdminSignup />}
             />
+             <Route path="/admin/dashboard/notification/" element={<NotificationPage />} />
           </Route>
         </Route>
         {/* instructor protected routes */}
