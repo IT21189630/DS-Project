@@ -140,12 +140,7 @@ function SignIn() {
 
           <div className="link-login">
             Don't have an account?{" "}
-            <span
-              className="login-connector"
-              onClick={() => navigate("/signup")}
-            >
-              Signup
-            </span>
+            <span className="login-connector">Signup</span>
           </div>
         </form>
       </div>

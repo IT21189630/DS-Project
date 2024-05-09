@@ -1,4 +1,4 @@
-.student-main-page-container {
+.cart-page-container {
   width: 100%;
   min-height: 100svh;
   display: flex;
@@ -8,7 +8,7 @@
   padding: 30px;
 }
 
-.course-display-container {
+.cart-display-container {
   width: 100%;
   max-width: 1100px;
   display: flex;
@@ -45,15 +45,23 @@
   background-color: var(--primary-color);
 }
 
-.course-partition-canvas {
+.cart-main-container {
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.cart-partition-canvas {
+  width: 100%;
+  max-width: 600px;
   min-height: 100px;
   padding: 10px 0;
   margin-top: 10px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .insight-link {
@@ -68,6 +76,10 @@
   position: relative;
   padding: 10px;
   margin: 0 5px;
+}
+
+.insight-container:hover {
+  cursor: pointer;
 }
 
 .insight-icon {
@@ -90,4 +102,49 @@
   justify-content: center;
   align-items: center;
   padding: 2px;
+}
+
+.cart-checkout-section {
+  width: 300px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.total-label {
+  font-size: 1.1em;
+  font-family: var(--font-family-one);
+  font-weight: 600;
+  color: grey;
+}
+
+.total-price {
+  font-size: 2em;
+  font-family: var(--font-family-one);
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+.checkout-btn {
+  margin-top: 10px;
+  height: 40px;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-family: var(--font-family-one);
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+}
+
+.checkout-btn:hover {
+  cursor: pointer;
+}
+
+.checkout-btn[disabled] {
+  opacity: 0.4;
 }

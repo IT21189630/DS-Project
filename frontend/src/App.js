@@ -21,9 +21,13 @@ import InstructorMainPage from "./components/instructor/main-page/InstructorMain
 import StudentProtectedRoute from "./pages/route-guard-student/StudentProtectedRoute";
 import StudentDashboard from "./pages/dashboard-student/StudentDashboard";
 import StudentMainPage from "./components/student/main-page/StudentMainPage";
+import ShoppingCart from "./components/student/shopping-cart/ShoppingCart";
+import Enrollments from "./components/student/enrollments/Enrollments";
 import HomePage from "./pages/home-page/HomePage";
 //notification page
 import NotificationPage from "./pages/notification/NotificationPage";
+import SuccessPayment from "./components/student/payment-success/SuccessPayment";
+import PaymentUnsuccess from "./components/student/payment-unsuccess/PaymentUnsuccess";
 
 function App() {
   return (
@@ -68,6 +72,23 @@ function App() {
         <Route path="/student/dashboard" element={<StudentProtectedRoute />}>
           <Route path="/student/dashboard/" element={<StudentDashboard />}>
             <Route path="/student/dashboard/" element={<StudentMainPage />} />
+            <Route
+              path="/student/dashboard/courses"
+              element={<StudentMainPage />}
+            />
+            <Route path="/student/dashboard/cart" element={<ShoppingCart />} />
+            <Route
+              path="/student/dashboard/enrollments"
+              element={<Enrollments />}
+            />
+            <Route
+              path="/student/dashboard/payment-success"
+              element={<SuccessPayment />}
+            />
+            <Route
+              path="/student/dashboard/payment-unsuccess"
+              element={<PaymentUnsuccess />}
+            />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
