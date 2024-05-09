@@ -1,77 +1,91 @@
-.course-card-container {
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin: 10px;
-  box-shadow: 3px 4px 4px var(--accent-color-two);
-  border: 3px solid var(--secondary-color);
-}
-
-.course-thumbnail-placeholder {
-  width: 100%;
-  height: 150px;
-}
-
-.card-content-area {
-  width: 100%;
+.enrollment-record-container {
+  width: 850px;
+  height: 180px;
   padding: 10px;
+  border-bottom: 2px solid var(--accent-color-two);
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
 
-.card-course-name {
-  font-size: 1em;
+.enr-record-image {
+  width: 250px;
+  height: 150px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.enr-record-details {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 10px;
+  margin-right: 10px;
+}
+
+.enr-course-name {
+  font-size: 1.3em;
   font-weight: 500;
   font-family: var(--font-family-one);
   color: var(--secondary-color);
 }
 
-.card-course-verification {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.enr-course-description {
+  margin-top: 5px;
+  font-size: 0.8em;
   color: grey;
-  font-family: var(--font-family-one);
-  font-size: 0.8em;
-  font-weight: 500;
-  margin-top: 3px;
+  font-family: var(--font-family-two);
+  text-align: justify;
 }
 
-.card-course-price {
-  padding: 4px 0;
-  font-size: 1em;
-  font-weight: 600;
-  font-family: var(--font-family-one);
-  color: var(--secondary-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card-btn {
-  border: none;
+.enr-skill-container {
+  margin-top: 7px;
   width: 100%;
-  padding: 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.enr-skill-badge {
+  font-family: var(--font-family-one);
   font-size: 0.8em;
-  font-weight: 600;
-  letter-spacing: 1px;
+  padding: 4px 10px;
+  margin-right: 5px;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.enr-record-options {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.enr-record-btn {
+  border: none;
+  width: 25px;
+  height: 25px;
+  font-size: 1em;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--secondary-color);
-  color: white;
+  margin: 10px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   transition: 0.3s;
-  margin-top: 8px;
 }
 
-.card-btn:hover {
+.enr-record-btn:hover {
   cursor: pointer;
-  background-color: var(--ternary-color);
-  color: var(--secondary-color);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .unenroll-confirmation-model {

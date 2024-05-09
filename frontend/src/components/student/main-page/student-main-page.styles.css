@@ -50,10 +50,22 @@
   min-height: 100px;
   padding: 10px 0;
   margin-top: 10px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.student-main-page-container::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.student-main-page-container::-webkit-scrollbar-track {
+  background-color: var(--accent-color-two);
+}
+.student-main-page-container::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
 }
 
 .insight-link {

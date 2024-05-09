@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Loading from "../../loading/Loading";
+import EnrollmentRecord from "../../enrollment-record/EnrollmentRecord";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -7,15 +8,27 @@ import "./enrollments.styles.css";
 
 function Enrollments() {
   const [enrollments, setEnrollments] = useState([]);
+  const [executed, setExecuted] = useState(false);
   const [loading, setLoading] = useState(false);
   const { user_id } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    getEnrollments();
-  }, []);
+  const unenrolFromCourse = async (enrollment_id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:4001/learnup/api/course-enrollment/unenroll/${enrollment_id}`
+      );
+      if (response.data) {
+        toast.success(
+          response.data.message || "Unenrolled from the course successfully!"
+        );
+        setExecuted(true);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message || error.message);
+    }
+  };
 
   const getEnrollments = async () => {
-    console.log("rendered");
     setLoading(true);
     try {
       const response = await axios.get(
@@ -31,6 +44,11 @@ function Enrollments() {
     }
   };
 
+  useEffect(() => {
+    getEnrollments();
+    setExecuted(false);
+  }, [executed]);
+
   return loading ? (
     <Loading passer={{ message: "Loading Data" }} />
   ) : (
@@ -40,9 +58,15 @@ function Enrollments() {
         {enrollments.length < 1 ? (
           <Loading passer={{ message: "No Enrollments Yet!" }} />
         ) : (
-          <div className="course-partition-canvas">
+          <div className="enrollment-partition-canvas">
             {enrollments.map((enrollmentData) => {
-              console.log(enrollmentData);
+              return (
+                <EnrollmentRecord
+                  record={enrollmentData}
+                  key={enrollmentData.course_id._id}
+                  unenrollFromCourse={unenrolFromCourse}
+                />
+              );
             })}
           </div>
         )}
