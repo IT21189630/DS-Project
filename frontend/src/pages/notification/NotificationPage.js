@@ -12,7 +12,7 @@ function NotificationPage() {
 
   const handleSendSMS = async () => {
     try {
-      await axios.post('http://localhost:4000/learnup/api/notification/send-sms', { recipientPhoneNo, message });
+      await axios.post('http://localhost:4003/learnup/api/notification/send-sms', { recipientPhoneNo, message });
       alert('SMS sent successfully!');
     } catch (error) {
       console.error('Error sending SMS:', error);
@@ -21,7 +21,7 @@ function NotificationPage() {
 
   const handleSendEmail = async () => {
     try {
-      await axios.post('http://localhost:4000/learnup/api/notification/send-email', { recipientEmail, subject, text });
+      await axios.post('http://localhost:4003/learnup/api/notification/send-email', { recipientEmail, subject, text });
       alert('Email sent successfully!');
     } catch (error) {
       console.error('Error sending email:', error);
@@ -33,10 +33,15 @@ function NotificationPage() {
       <Typography variant="h4" align="center" gutterBottom marginTop={4} marginBottom={4}>
         Send Notifications
       </Typography>
+      <Typography align="center" marginBottom={4}>
+      "Welcome, Admin! This is your control panel for managing notifications. 
+      Stay informed and keep your users engaged by sending important updates via SMS and email. 
+      Take charge of your communication strategy and ensure your messages reach the right audience at the right time."
+      </Typography>
       <Grid container spacing={14}>
         <Grid item xs={6}>
             <Box  fullWidth>
-                <Typography variant="h6">Send SMS</Typography>
+                <Typography variant="h6" marginBottom={2}>Send SMS</Typography>
                 <TextField
                 fullWidth
                 label="Enter Recipient Phone Number"
@@ -48,18 +53,20 @@ function NotificationPage() {
                 fullWidth
                 label="Enter SMS message"
                 variant="outlined"
+                multiline
+                rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 style={{ marginTop: '1rem' }}
                 />
-                <Button variant="contained" color="primary" onClick={handleSendSMS} style={{ marginTop: '1rem' }}>
-                Send SMS
+                <Button variant="contained" onClick={handleSendSMS} style={{ marginTop: '1rem', backgroundColor:"#92e3a9"}}>
+                  <Typography color={'black'}>Send SMS</Typography>
                 </Button>
             </Box>
         </Grid>
         <Grid item xs={6}>
             <Box  fullWidth>
-                <Typography variant="h6">Send Email</Typography>
+                <Typography variant="h6" marginBottom={2}>Send Email</Typography>
                 <TextField
                 fullWidth
                 label="Enter recipient email"
@@ -73,7 +80,7 @@ function NotificationPage() {
                 label="Enter subject"
                 variant="outlined"
                 multiline
-                rows={4}
+                rows={2}
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 style={{ marginTop: '1rem' }}
@@ -88,8 +95,8 @@ function NotificationPage() {
                 onChange={(e) => setText(e.target.value)}
                 style={{ marginTop: '1rem' }}
                 />
-                <Button variant="contained" color="primary" onClick={handleSendEmail} style={{ marginTop: '1rem' }}>
-                Send Email
+                <Button variant="contained" onClick={handleSendEmail} style={{ marginTop: '1rem', backgroundColor:"#92e3a9" }}>
+                  <Typography color={'black'}>Send Email</Typography>
                 </Button>
             </Box>
         </Grid>

@@ -42,10 +42,10 @@ const sendEmail = async (req, res) => {
 const sendSMS = async (req, res) => {
   try {
     // Assume request body contains enrollment details
-    const { to, message } = req.body;
+    const { recipientPhoneNo, message } = req.body;
 
     // Send confirmation email
-    await smsService.sendSMS(to, message);
+    await smsService.sendSMS(recipientPhoneNo, message);
 
     res.status(200).json({ message: 'SMS sent successfully' });
   } catch (error) {

@@ -1,4 +1,6 @@
 const enrollmentModel = require("../models/enrollment.model");
+const emailService = require('../services/emailService');
+const smsService = require('../services/smsService');
 
 // create enrollment
 const enrollToCourse = async (req, res) => {
@@ -12,6 +14,9 @@ const enrollToCourse = async (req, res) => {
       purchased_by: user_id,
       course_id: course_id,
     });
+
+    await emailService.sendConfirmationEmail(course_id, user_id);
+    await smsService.sendConfirmationSMS(course_id);
 
     if (response) {
       return res.status(201).json({ message: "enrollment record created" });

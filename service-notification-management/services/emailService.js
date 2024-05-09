@@ -9,20 +9,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const sendConfirmationEmail = async (userId, courseId) => {
-  try {
-    await transporter.sendMail({
-      from: 'binodgayasri2001@gmail.com',
-      to: 'binodhetti@gmail.com',
-      subject: 'Enrollment Confirmation',
-      text: `Dear user, you have successfully enrolled in course ${courseId}.`
-    });
-    console.log('Confirmation email sent');
-  } catch (error) {
-    console.error('Error sending confirmation email:', error);
-    throw error;
-  }
-};
 
 const sendEmail = async (recipientEmail, subject, text) => {
   try {
@@ -39,4 +25,4 @@ const sendEmail = async (recipientEmail, subject, text) => {
   }
 };
 
-module.exports = {sendConfirmationEmail,  sendEmail}
+module.exports = {sendEmail}
