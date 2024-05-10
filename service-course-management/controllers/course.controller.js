@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler');
 
 
 const createCourse = asyncHandler(async (req, res) => {
-    const { courseId, courseName, courseImage, specialization , courseDescription , coursePrice , courseContent , skills , courseStatus } = req.body;
+    const { courseId, courseName, courseImage, specialization , courseDescription , coursePrice , courseContent , skills , courseStatus , userId } = req.body;
 
     try {
         // Create Options first
@@ -24,7 +24,8 @@ const createCourse = asyncHandler(async (req, res) => {
             coursePrice,
             courseContent: contentIds, // Assign option IDs to the question
             skills,
-            courseStatus:'Pending'
+            courseStatus:'Pending',
+            userId
         });
 
         // Update the question field in each option to reference the new question

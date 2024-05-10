@@ -46,9 +46,14 @@ const CourseSchema = new Schema({
 
     courseStatus: {
         type: String,
-    }
+    },
+
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Instructor'
+    },
       
-});
+}, {timestamps: true});
 
 module.exports = mongoose.model("Course", CourseSchema);
 

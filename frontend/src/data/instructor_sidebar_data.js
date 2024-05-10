@@ -2,14 +2,14 @@ import { FaLink } from "react-icons/fa6";
 
 const instructorSidebarData = [
   {
-    text: "Instructor Link 1",
+    text: "New Course",
     icon: <FaLink />,
-    link: "/instructor/link",
+    link: "/instructor/dashboard/create-course",
   },
   {
-    text: "Instructor Link 2",
+    text: "Courses",
     icon: <FaLink />,
-    link: "/instructor/link",
+    link: "/instructor/dashboard/courses",
   },
   {
     text: "Instructor Link 3",

@@ -17,6 +17,10 @@ import AdminDashboard from "./pages/dashboard-admin/AdminDashboard";
 import InstructorProtectedRoute from "./pages/route-guard-instructor/InstructorProtectedRoute";
 import InstructorDashboard from "./pages/dashboard-instructor/InstructorDashboard";
 import InstructorMainPage from "./components/instructor/main-page/InstructorMainPage";
+import CreateCourse from "./components/instructor/create-course-page/CreateCourse";
+import ViewCourses from "./components/instructor/view-courses/ViewCourses";
+import ViewCourse from "./components/instructor/view-course/ViewCourse";
+import UpdateCourse from "./components/instructor/update-course-page/UpdateCourse";
 // student page
 import StudentProtectedRoute from "./pages/route-guard-student/StudentProtectedRoute";
 import StudentDashboard from "./pages/dashboard-student/StudentDashboard";
@@ -59,6 +63,23 @@ function App() {
               path="/instructor/dashboard/"
               element={<InstructorMainPage />}
             />
+             <Route
+              path="/instructor/dashboard/create-course"
+              element={<CreateCourse />}
+            />
+            <Route
+              path="/instructor/dashboard/courses"
+              element={<ViewCourses />}
+            />
+            <Route
+              path="/instructor/dashboard/courses/course/:id"
+              element={<ViewCourse />}
+            />
+            <Route
+              path="/instructor/dashboard/courses/course/update/:id"
+              element={<UpdateCourse />}
+            />
+            
           </Route>
         </Route>
         {/* student protected routes */}
