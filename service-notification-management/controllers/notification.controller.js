@@ -1,36 +1,23 @@
 const courseEnrollment = require('../models/enrollment');
 const emailService = require('../services/emailService');
 const smsService = require('../services/smsService');
-
-const confirmEnrollment = async (req, res) => {
-  try {
-    // Assume request body contains enrollment details
-    const { courseId, userId } = req.body;
-
-    // Save enrollment details to the database
-    const enrollment = new courseEnrollment({ courseId, userId });
-    await enrollment.save();
-
-    // Send confirmation SMS
-    //await smsService.sendConfirmationSMS(courseId);
-
-    // Send confirmation email
-    await emailService.sendConfirmationEmail(userId, courseId);
-
-    res.status(200).json({ message: 'Enrollment confirmed successfully' });
-  } catch (error) {
-    console.error('Error confirming enrollment:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
+const Notification = require('../models/notification');
 
 const sendEmail = async (req, res) => {
   try {
     // Assume request body contains enrollment details
     const { recipientEmail, subject, text } = req.body;
 
+    const newNotification = new Notification({
+      message: text,
+      recipient: recipientEmail,
+      emailSubject: subject,
+      notificationType: "email"
+    });
+  
     // Send confirmation email
-    await emailService.sendEmail(recipientEmail, subject, text);
+    //await emailService.sendEmail(recipientEmail, subject, text);
+    await newNotification.save()
 
     res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
@@ -44,8 +31,16 @@ const sendSMS = async (req, res) => {
     // Assume request body contains enrollment details
     const { recipientPhoneNo, message } = req.body;
 
+    const newNotification = new Notification({
+      message: message,
+      recipient: recipientPhoneNo,
+      notificationType: "sms"
+    });
+  
+    await newNotification.save()
+
     // Send confirmation email
-    await smsService.sendSMS(recipientPhoneNo, message);
+   // await smsService.sendSMS(recipientPhoneNo, message);
 
     res.status(200).json({ message: 'SMS sent successfully' });
   } catch (error) {
@@ -54,4 +49,24 @@ const sendSMS = async (req, res) => {
   }
 };
 
-module.exports = {confirmEnrollment, sendEmail, sendSMS}
+
+// Controller to get notification history
+const getNotificationHistory = async (req, res) => {
+  try {
+    // Fetch notification history from the database
+    const notificationHistory = await Notification.find().sort({ dateTime: -1 });
+
+    // Separate notifications into SMS and email history
+    const emailHistory = notificationHistory.filter(notification => notification.notificationType === 'email');
+    const smsHistory = notificationHistory.filter(notification => notification.notificationType === 'sms');
+
+    
+    
+    res.status(200).json({ smsHistory, emailHistory });
+  } catch (error) {
+    console.error('Error fetching notification history:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+module.exports = {sendEmail, sendSMS, getNotificationHistory}

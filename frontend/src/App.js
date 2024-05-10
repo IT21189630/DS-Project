@@ -26,6 +26,7 @@ import Enrollments from "./components/student/enrollments/Enrollments";
 import HomePage from "./pages/home-page/HomePage";
 //notification page
 import NotificationPage from "./pages/notification/NotificationPage";
+import NotificationHistory from "./pages/notification/NotificationHistory";
 import SuccessPayment from "./components/student/payment-success/SuccessPayment";
 import PaymentUnsuccess from "./components/student/payment-unsuccess/PaymentUnsuccess";
 
@@ -51,6 +52,7 @@ function App() {
               element={<AdminSignup />}
             />
              <Route path="/admin/dashboard/notification/" element={<NotificationPage />} />
+             <Route path="/admin/dashboard/notification/history" element={<NotificationHistory />} />
           </Route>
         </Route>
         {/* instructor protected routes */}

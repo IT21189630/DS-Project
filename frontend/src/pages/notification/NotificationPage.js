@@ -38,6 +38,9 @@ function NotificationPage() {
       Stay informed and keep your users engaged by sending important updates via SMS and email. 
       Take charge of your communication strategy and ensure your messages reach the right audience at the right time."
       </Typography>
+      <Button variant="contained" href="/admin/dashboard/notification/history" style={{ marginTop: '1rem', marginBottom: '2rem',backgroundColor:"#92e3a9"}}>
+          <Typography color={'black'}>Notification History</Typography>
+      </Button>
       <Grid container spacing={14}>
         <Grid item xs={6}>
             <Box  fullWidth>
