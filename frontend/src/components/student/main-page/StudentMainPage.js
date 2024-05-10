@@ -23,7 +23,7 @@ function StudentMainPage() {
     setLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:4002/learnup/api/course-management/get"
+        "http://localhost:3500/learnup/api/course-management/get-all-courses"
       );
       if (response.data) {
         setCourses(response.data);
@@ -49,7 +49,7 @@ function StudentMainPage() {
               <span className="item-counter"></span>
             </div>
           </Link>
-          <Link className="insight-link">
+          <Link className="insight-link" to="/student/dashboard/cart">
             <span className="insight-container">
               <span className="insight-icon">
                 <BsCart3 />
@@ -58,13 +58,15 @@ function StudentMainPage() {
             </span>
           </Link>
         </div>
-        <span className="partition-heading">Popular Courses</span>
+        <span className="partition-heading">Available Courses</span>
         {courses.length < 1 ? (
           <Loading passer={{ message: "No Courses" }} />
         ) : (
           <div className="course-partition-canvas">
             {courses.map((course) => {
-              return <CourseCard key={course._id} course={course} />;
+              if(course.courseStatus === "Approved"){
+                return <CourseCard key={course._id} course={course} />;
+              }
             })}
           </div>
         )}

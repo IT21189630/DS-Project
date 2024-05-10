@@ -8,7 +8,7 @@ const enrollmentSchema = mongoose.Schema(
     },
     course_id: {
       type: mongoose.Types.ObjectId,
-      ref: "Dummy_Course",
+      ref: "Course",
     },
   },
   { timestamps: true }

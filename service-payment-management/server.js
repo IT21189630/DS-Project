@@ -29,8 +29,6 @@ app.get("/learnup/api/payment-management", (req, res) => {
 
 app.use("/learnup/api/payment-management", require("./routes/payment.routes"));
 
-app.use("/learnup/api/course-management", require("./routes/course.routes"));
-
 app.use(verifyJWT);
 app.use(errorHandler);
 

@@ -3,8 +3,8 @@ const axios = require('axios');
 const sendSMS = async (recipientPhoneNo, message) => {
   try {
     const response = await axios.post('https://app.notify.lk/api/v1/send', {
-        api_key: 'oiT5uPpsidQm2h4pL16i',
-        user_id:"27107",
+        api_key: 'ieuqYgb8phcfsIH5mr1c',
+        user_id:"27116",
         sender_id:"NotifyDEMO",
         message:message,
         to: `94${recipientPhoneNo.slice(-9)}`

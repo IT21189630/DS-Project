@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
-const courseModel = require("../models/course.model");
+const courseModel = require("../models/Course.model");
 
 const checkout = async (req, res) => {
   const { cart_items } = req.body;
@@ -12,16 +12,16 @@ const checkout = async (req, res) => {
     if (purchasingCourses.length > 0) {
       // Check if any courses are found
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"], // Corrected property name
+        payment_method_types: ["card"],
         mode: "payment",
         line_items: purchasingCourses.map((course) => {
           return {
             price_data: {
               currency: "usd",
               product_data: {
-                name: course.course_name,
+                name: course.courseName,
               },
-              unit_amount: course.course_price * 100, // No need for parentheses
+              unit_amount: course.coursePrice * 100,
             },
             quantity: 1,
           };

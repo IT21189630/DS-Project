@@ -2,6 +2,7 @@ const enrollmentModel = require("../models/enrollment.model");
 const emailService = require('../services/emailService');
 const smsService = require('../services/smsService');
 
+const courseModel = require("../models/course.model");
 // create enrollment
 const enrollToCourse = async (req, res) => {
   const { course_id, user_id } = req.body;
@@ -10,13 +11,19 @@ const enrollToCourse = async (req, res) => {
   }
 
   try {
+    const foundCourse = await courseModel.findById(course_id);
+
+    if (!foundCourse) {
+      return res.status(404).json({ message: "enrolling course not exist!" });
+    }
+
     const response = await enrollmentModel.create({
       purchased_by: user_id,
-      course_id: course_id,
+      course_id: foundCourse._id,
     });
 
-    await emailService.sendConfirmationEmail(course_id, user_id);
-    await smsService.sendConfirmationSMS(course_id);
+    //await emailService.sendConfirmationEmail(course_id, user_id);
+    //await smsService.sendConfirmationSMS(course_id);
 
     if (response) {
       return res.status(201).json({ message: "enrollment record created" });
@@ -37,9 +44,10 @@ const unenrollFromCourse = async (req, res) => {
   if (!enrollment_id) {
     return res.status(400).json({ message: "enrollment id cant be found!" });
   }
-
   try {
-    const deletedEnrollment = await enrollmentModel.findByIdAndDelete(id);
+    const deletedEnrollment = await enrollmentModel.findByIdAndDelete(
+      enrollment_id
+    );
 
     if (deletedEnrollment) {
       return res.status(200).json({ message: "enrollment deleted!" });
@@ -58,7 +66,12 @@ const getEnrolledCoursesFromUserId = async (req, res) => {
   }
 
   try {
-    const enrollments = await enrollmentModel.find({ purchased_by: user_id });
+    const enrollments = await enrollmentModel
+      .find({ purchased_by: user_id })
+      .populate({
+        path: "course_id",
+        model: "Course",
+      });
 
     if (enrollments) {
       return res.status(200).json(enrollments);

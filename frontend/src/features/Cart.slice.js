@@ -16,7 +16,7 @@ const cartSlice = createSlice({
       );
       if (!duplicateCourse) {
         state.items.push(newCourse);
-        state.totalCost += newCourse.course_price;
+        state.totalCost += newCourse.coursePrice;
       }
     },
     clearCart: (state) => {
@@ -32,7 +32,7 @@ const cartSlice = createSlice({
         state.items = state.items.filter(
           (course) => course._id !== courseIdToRemove
         );
-        state.totalCost -= courseToRemove.course_price;
+        state.totalCost -= courseToRemove.coursePrice;
       }
     },
   },

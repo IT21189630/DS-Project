@@ -2,6 +2,8 @@ import { FaLink } from "react-icons/fa6";
 import { MdOutlinePlayLesson } from "react-icons/md";
 import { RiShoppingCartFill } from "react-icons/ri";
 import { FaGraduationCap } from "react-icons/fa6";
+import { FaHeartCirclePlus } from "react-icons/fa6";
+import { IoSettings } from "react-icons/io5";
 
 const studentSidebarData = [
   {
@@ -20,13 +22,13 @@ const studentSidebarData = [
     link: "/student/dashboard/enrollments",
   },
   {
-    text: "Student Link 4",
-    icon: <FaLink />,
+    text: "Wishlist",
+    icon: <FaHeartCirclePlus />,
     link: "/student/link",
   },
   {
-    text: "Student Link 5",
-    icon: <FaLink />,
+    text: "Settings",
+    icon: <IoSettings />,
     link: "/student/link",
   },
 ];
