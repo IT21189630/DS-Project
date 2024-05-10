@@ -22,6 +22,7 @@ import StudentProtectedRoute from "./pages/route-guard-student/StudentProtectedR
 import StudentDashboard from "./pages/dashboard-student/StudentDashboard";
 import StudentMainPage from "./components/student/main-page/StudentMainPage";
 import ShoppingCart from "./components/student/shopping-cart/ShoppingCart";
+import PurchasedCourse from "./components/student/course-page/PurchasedCourse";
 import Enrollments from "./components/student/enrollments/Enrollments";
 import HomePage from "./pages/home-page/HomePage";
 //notification page
@@ -51,8 +52,14 @@ function App() {
               path="/admin/dashboard/create-admin/"
               element={<AdminSignup />}
             />
-             <Route path="/admin/dashboard/notification/" element={<NotificationPage />} />
-             <Route path="/admin/dashboard/notification/history" element={<NotificationHistory />} />
+            <Route
+              path="/admin/dashboard/notification/"
+              element={<NotificationPage />}
+            />
+            <Route
+              path="/admin/dashboard/notification/history"
+              element={<NotificationHistory />}
+            />
           </Route>
         </Route>
         {/* instructor protected routes */}
@@ -82,6 +89,10 @@ function App() {
             <Route
               path="/student/dashboard/enrollments"
               element={<Enrollments />}
+            />
+            <Route
+              path="/student/dashboard/purchased-course/:id"
+              element={<PurchasedCourse />}
             />
             <Route
               path="/student/dashboard/payment-success"

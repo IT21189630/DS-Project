@@ -57,7 +57,7 @@ function EnrollmentRecord({ record, unenrollFromCourse }) {
         </div>
       </div>
       <div className="enr-record-options">
-        <Link>
+        <Link to={`/student/dashboard/purchased-course/${course_id._id}`}>
           <button className="enr-record-btn view">
             <FaArrowRightLong />
           </button>
