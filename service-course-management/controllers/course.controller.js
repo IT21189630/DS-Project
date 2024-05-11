@@ -64,6 +64,18 @@ const getAllCourses = asyncHandler(async (req, res) => {
 	}
 });
 
+const getAllApprovedCourses = asyncHandler(async (req, res) => {
+	const courses = await CourseModel.find({
+		courseStatus: "Approved",
+	}).populate("courseContent");
+
+	if (courses.length > 0) {
+		res.status(200).json(courses);
+	} else {
+		res.status(404).json({ message: "No course found" });
+	}
+});
+
 const getAllCoursesWithInstructor = asyncHandler(async (req, res) => {
 	const courses = await CourseModel.find()
 		.populate("courseContent")
@@ -331,6 +343,7 @@ module.exports = {
 	getAllCourses,
 	getAllContents,
 	getAllCoursesWithInstructor,
+	getAllApprovedCourses,
 	getContentDetailsById,
 	getCoursById,
 	getAllCourseIds,

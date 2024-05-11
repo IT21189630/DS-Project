@@ -4,6 +4,7 @@ const router = express.Router();
 const {
 	createCourse,
 	getAllCourses,
+	getAllApprovedCourses,
 	getAllCoursesWithInstructor,
 	getAllContents,
 	getContentDetailsById,
@@ -20,6 +21,7 @@ const { approveCourse } = require("../controllers/approval.controller");
 
 router.post("/create-course", createCourse);
 router.get("/get-all-courses", getAllCourses);
+router.get("/get-all-approved-courses", getAllApprovedCourses);
 router.get("/get-all-courses-with-instructor", getAllCoursesWithInstructor);
 router.get("/get-all-contents", getAllContents);
 router.get("/get-content/:id", getContentDetailsById);
