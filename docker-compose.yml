@@ -1,7 +1,7 @@
 #prettier-ignore
 version: "3"
 services:
-  learnup-frontend:
+  frontend:
     build: ./frontend/
     ports: 
       - "3000:3000"
@@ -9,10 +9,12 @@ services:
       - ./frontend/:/app
       - /app/node_modules
     depends_on:
-      - learnup-service-user-management
-      - learnup-service-learner-enrollment
+      - authentication
+      - courses
+      - payment
+      - enrollment
 
-  learnup-service-user-management:
+  authentication:
     build: ./service-user-management/
     ports: 
       - "4000:4000"
@@ -22,7 +24,7 @@ services:
     env_file:
       - ./service-user-management/.env
 
-  learnup-service-learner-enrollment:
+  enrollment:
     build: ./service-learner-enrollment/
     ports: 
       - "4001:4001"
@@ -31,3 +33,23 @@ services:
       - /app/node_modules
     env_file:
       - ./service-learner-enrollment/.env
+
+  courses:
+    build: ./service-course-management/
+    ports: 
+      - "3500:3500"
+    volumes: 
+      - ./service-course-management/:/app
+      - /app/node_modules
+    env_file:
+      - ./service-course-management/.env
+
+  payment:
+    build: ./service-payment-management/
+    ports: 
+      - "4002:4002"
+    volumes: 
+      - ./service-payment-management/:/app
+      - /app/node_modules
+    env_file:
+      - ./service-payment-management/.env
