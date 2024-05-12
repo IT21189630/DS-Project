@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {toast} from 'react-hot-toast'
+import { useLocation } from 'react-router-dom'
 import { TextField, Button, Typography, Container, Box, Grid, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 
 function NotificationPage() {
+  const { state } = useLocation();
   const [recipientPhoneNo, setRecipientPhoneNo] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(state?`${state.content}`:"");
   const [recipientEmail, setRecipientEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [text, setText] = useState('');
+  const [subject, setSubject] = useState(state?`${state.title}`:"");
+  const [text, setText] = useState(state?`${state.content}`:"");
   const [selectedEmailOption, setSelectedEmailOption] = useState('one');
   const [selectedSMSOption, setSelectedSMSOption] = useState('one');
 
   const handleSendSMS = async () => {
     try {
       if(selectedSMSOption == "one"){
-      await axios.post('http://localhost:4003/learnup/api/notification/send-sms', { recipientPhoneNo, message });
-      alert('SMS sent successfully!');
+        await axios.post('http://localhost:4003/learnup/api/notification/send-sms', { recipientPhoneNo, message });
+        toast.success("SMS sent successfully!")
       }
       else{
         await axios.post('http://localhost:4003/learnup/api/notification/send-sms-all', { recipientPhoneNo, message });
-        alert('SMS sent successfully!');
+        toast.success("SMS sent to all students successfully!")
       }
     } catch (error) {
       console.error('Error sending SMS:', error);
@@ -29,12 +32,12 @@ function NotificationPage() {
   const handleSendEmail = async () => {
     try {
       if(selectedEmailOption == "one"){
-      await axios.post('http://localhost:4003/learnup/api/notification/send-email', { recipientEmail, subject, text });
-      alert('Email sent successfully!');
+        await axios.post('http://localhost:4003/learnup/api/notification/send-email', { recipientEmail, subject, text });
+        toast.success("Email sent successfully!")
       }
       else{
         await axios.post('http://localhost:4003/learnup/api/notification/send-emails-all', { recipientEmail, subject, text });
-        alert('Emails sent to all students successfully!');
+        toast.success("Emails sent to all students successfully!")
       }
     } catch (error) {
       console.error('Error sending email:', error);
@@ -60,8 +63,11 @@ function NotificationPage() {
       Stay informed and keep your users engaged by sending important updates via SMS and email. 
       Take charge of your communication strategy and ensure your messages reach the right audience at the right time."
       </Typography>
-      <Button variant="contained" href="/admin/dashboard/notification/history" style={{ marginTop: 10, marginBottom: 30,backgroundColor:"#92e3a9"}}>
+      <Button variant="contained" href="/admin/dashboard/notification/history" style={{ marginTop: 10, marginBottom: 30,marginRight:10,backgroundColor:"#92e3a9"}}>
           <Typography color={'black'}>Notification History</Typography>
+      </Button>
+      <Button variant="contained" href="/admin/dashboard/notification/template/form" style={{ marginTop: 10, marginBottom: 30,backgroundColor:"#92e3a9"}}>
+          <Typography color={'black'}>Templates</Typography>
       </Button>
       <Grid container spacing={14}>
         <Grid item xs={6}>

@@ -83,7 +83,7 @@ const sendSMSAll = async (req, res) => {
 
     const newNotification = new Notification({
       message: message,
-      recipient: "All",
+      recipient: "All students",
       notificationType: "sms"
     });
   

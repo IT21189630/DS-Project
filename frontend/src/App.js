@@ -30,6 +30,7 @@ import NotificationPage from "./pages/notification/NotificationPage";
 import NotificationHistory from "./pages/notification/NotificationHistory";
 import SuccessPayment from "./components/student/payment-success/SuccessPayment";
 import PaymentUnsuccess from "./components/student/payment-unsuccess/PaymentUnsuccess";
+import MessageTemplate from "./pages/notification/MessageTemplate";
 
 function App() {
   return (
@@ -59,6 +60,10 @@ function App() {
             <Route
               path="/admin/dashboard/notification/history"
               element={<NotificationHistory />}
+            />
+            <Route
+              path="/admin/dashboard/notification/template/form"
+              element={<MessageTemplate />}
             />
           </Route>
         </Route>
