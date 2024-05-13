@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { FaDollarSign } from "react-icons/fa";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { MdOutlineDelete } from "react-icons/md";
+import { BiEditAlt } from "react-icons/bi";
 
 import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom'
@@ -22,6 +23,7 @@ function ViewCourse() {
     const [courseDescription, setCourseDescription] = useState();
     const [specialization, setSpecialization] = useState();
     const [coursePrice, setCoursePrice] = useState();
+    const [courseStatus, setCourseStatus] = useState();
     const [courseContents, setCourseContents] = useState([]);
     const [skills, setSkills] = useState([]);
 
@@ -40,6 +42,7 @@ function ViewCourse() {
                 setCourseDescription(response.data.courseDescription)
                 setSpecialization(response.data.specialization)
                 setCoursePrice(response.data.coursePrice)
+                setCourseStatus(response.data.courseStatus)
                 setCourseContents(response.data.courseContent)
                 setSkills(response.data.skills)
                 
@@ -70,7 +73,7 @@ function ViewCourse() {
     
         if (shouldDelete) {
           try {
-            const response = await axios.delete(`http://localhost:3500/course/get-course/${courseId}/content/${id}`);
+            const response = await axios.delete(`http://localhost:3500/course/getcourse/${courseId}/content/${id}`);
             console.log('Response status:', response.status);
     
             if (response.status === 200) {
@@ -130,11 +133,13 @@ function ViewCourse() {
                         </div>
                         <div className='course-name-text-int'>
                             <span className='course-des-text'>{specialization}</span><br></br>
-                            <span className='course-des-text'>{courseId}</span>
+                            <span className='course-des-text'>{courseId}</span><br></br>
+                            <span className='course-des-text'>{courseStatus}</span>
                         </div>
                         <div className='course-name'>
                             <span className='course-des-text'>{courseDescription}</span>
                         </div>
+
                         <div className='course-name' style={{ marginTop: '10px' }}>
                             <span className='course-des-text' >Skills</span>
                         </div>
@@ -160,6 +165,13 @@ function ViewCourse() {
                         <span className='view-content-details-con-2-topic-text'>Course Content</span>
                     </div>
                     <div className='view-content-details-con-2-contents'>
+                      <div className='add-new-content-container'>
+                      <Link to={`/instructor/dashboard/courses/course/addcontent/${id}`} className='link-no-style'>
+                        <div className='add-new-content-button'>
+                          <span className='add-new-content-btn-span'>Add Content</span>
+                        </div>
+                        </Link>
+                      </div>
                     {courseContents.map((content, index) => (
                        <div className='view-content-list'>
                        
@@ -178,8 +190,13 @@ function ViewCourse() {
                                 </div>
                                 </div>
                                 <div className='view-content-dlt-con'>
+                                
                                 <MdOutlineDelete className='content-dlt-btn' size={25} color='#14cc60' onClick={() => handleDelete(content._id)}/>
+                                <Link to={`/instructor/dashboard/courses/course/updatecontent/${content._id}`} className='link-no-style'>
+                                <BiEditAlt className='content-dlt-btn' size={25} color='#14cc60' width={10}/>
+                                </Link>
                                 </div>
+                                
                                 
                             </div>
                         

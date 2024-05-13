@@ -1,15 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
-import { FaDollarSign } from "react-icons/fa";
-import { FaRegCirclePlay } from "react-icons/fa6";
-import { MdOutlineDelete } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FiEdit2 } from "react-icons/fi";
 
 import { useNavigate } from 'react-router-dom';
-
 
 import '../create-course-page/createcourse.css'
 
@@ -77,6 +73,7 @@ function UpdateCourse() {
       if (editingOptionIndex !== -1) {
         // If an option is being edited, update the existing option
         const updatedOptions = [...courseContent];
+        
         updatedOptions[editingOptionIndex] = itemObject;
         setOptions(updatedOptions);
         setEditingOptionIndex(-1); // Reset the editing index
@@ -111,12 +108,6 @@ function UpdateCourse() {
     };
   
     const tenderQuestionFormHandler = async () => {
-
-      //const skillsString = skillsArray.join(', ');
-    
-  
-    //   const skills = skillsArray.split(',').map(skillsArray => skillsArray.trim());
-    //   console.log('Skills array:', skills);
 
     const skills = typeof skillsArray === 'string' ? skillsArray.split(',').map(skill => skill.trim()) : skillsArray;
   
@@ -165,7 +156,7 @@ function UpdateCourse() {
     <div  className='create-course-main-container'>
 
 <div className="create-mealplan-request-container">
-          <span className="text-heading-type-1">Question Form</span>
+          <span className="text-heading-type-1">Course Form</span>
           <div className="create-mealplan-first-row">
             <form className="tender-proposal-form-area">
               {/* supplier full name */}
@@ -379,21 +370,7 @@ function UpdateCourse() {
               >
                 Submit Course
               </button>
-          {/* <div className="create-proposal-second-row">
-            <div className="tender-proposal-guidelines">
-              
-              <button
-                className="submit-proposal-btn"
-                // onClick={() => tenderQuestionFormHandler()}
-              >
-                Submit Question
-              </button>
-            </div>
-            <div
-              className="tender-proposal-placeholder-image"
-            //   style={{ backgroundImage: `url(${TenderProposalPlaceHolder})` }}
-            ></div>
-          </div> */}
+         
         </div>
 
     </div>

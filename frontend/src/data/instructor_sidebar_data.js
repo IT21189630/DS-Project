@@ -12,17 +12,17 @@ const instructorSidebarData = [
     link: "/instructor/dashboard/courses",
   },
   {
-    text: "Instructor Link 3",
+    text: "settings",
     icon: <FaLink />,
     link: "/instructor/link",
   },
   {
-    text: "Instructor Link 4",
+    text: "Students",
     icon: <FaLink />,
     link: "/instructor/link",
   },
   {
-    text: "Instructor Link 5",
+    text: "Notifications",
     icon: <FaLink />,
     link: "/instructor/link",
   },

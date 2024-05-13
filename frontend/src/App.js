@@ -21,6 +21,8 @@ import CreateCourse from "./components/instructor/create-course-page/CreateCours
 import ViewCourses from "./components/instructor/view-courses/ViewCourses";
 import ViewCourse from "./components/instructor/view-course/ViewCourse";
 import UpdateCourse from "./components/instructor/update-course-page/UpdateCourse";
+import AddContent from "./components/instructor/add-new-content-page/AddContent";
+import UpdateContent from "./components/instructor/update-content-page/UpdateContent";
 // student page
 import StudentProtectedRoute from "./pages/route-guard-student/StudentProtectedRoute";
 import StudentDashboard from "./pages/dashboard-student/StudentDashboard";
@@ -78,6 +80,14 @@ function App() {
             <Route
               path="/instructor/dashboard/courses/course/update/:id"
               element={<UpdateCourse />}
+            />
+            <Route
+              path="/instructor/dashboard/courses/course/addcontent/:id"
+              element={<AddContent />}
+            />
+            <Route
+              path="/instructor/dashboard/courses/course/updatecontent/:id"
+              element={<UpdateContent />}
             />
             
           </Route>

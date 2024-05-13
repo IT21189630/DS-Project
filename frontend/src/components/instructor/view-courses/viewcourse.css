@@ -160,6 +160,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-left: 500px;
 }
 
 #search-id input[type=text] {
@@ -185,6 +186,12 @@
   .link-no-style {
     text-decoration: none;
     color: inherit;
+}
+
+.search-and-topic{
+    display: flex;
+    align-items: center;
+    
 }
 
 

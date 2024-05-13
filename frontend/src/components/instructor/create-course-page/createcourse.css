@@ -19,6 +19,11 @@
   --yellow-variant-three: #f6e58d;
   --yellow-variant-four: #fbc531;
   --city-light-variant: #dfe4ea;
+
+  --font-family-one: "Roboto", sans-serif;
+  --font-family-two: "Poppins", sans-serif;
+  --font-family-three: "Just Another Hand", cursive;
+  --font-family-four: "Montserrat", sans-serif;
 }
 
 .create-mealplan-first-row::-webkit-scrollbar {
@@ -27,7 +32,7 @@
 
 .create-mealplan-first-row::-webkit-scrollbar-thumb {
   border-radius: 0.3em;
-  background-color: var(--yellow-variant-three);
+  background-color: #14cc60;
 }
 
 .entered-item-list-displayer::-webkit-scrollbar {
@@ -35,7 +40,7 @@
 }
 .entered-item-list-displayer::-webkit-scrollbar-thumb {
   border-radius: 0.3em;
-  background-color: var(--yellow-variant-three);
+  background-color: #14cc60;
 }
 
 .create-mealplan-request-container::-webkit-scrollbar {
@@ -44,7 +49,7 @@
 
 .create-mealplan-request-container::-webkit-scrollbar-thumb {
   border-radius: 0.3em;
-  background-color: var(--yellow-variant-three);
+  background-color: #14cc60;
 }
 
 .create-mealplan-request-container {
@@ -61,7 +66,7 @@
 
 .create-mealplan-first-row {
   width: 100%;
-  height: 100vh;
+  height: fit-content;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -85,6 +90,11 @@
 .tender-proposal-input-set {
   width: 100%;
   margin-top: 0.6rem;
+}
+
+.text-heading-type-1{
+  font-family: var(--font-fam-one);
+  font-size: 22px;
 }
 
 .tender-proposal-label {
@@ -116,6 +126,7 @@
   border-radius: 6px;
   resize: none;
   font-family: var(--font-fam-one);
+  margin-bottom: #14cc60;
 }
 
 .tender-proposal-set {
@@ -133,6 +144,7 @@
   padding: 0 15px 15px 15px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 0.3em;
+  margin-bottom: 40px;
 }
 
 .tender-proposal-set {
@@ -152,6 +164,7 @@
   overflow-y: scroll;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 0.3em;
+  margin-bottom: 10px;
 }
 
 .add-item-btn {
@@ -159,7 +172,7 @@
   margin: 20px auto;
   border: none;
   outline: none;
-  background-color: var(--yellow-variant-three);
+  background-color: #14cc60;
   font-family: var(--font-fam-one);
   font-size: 0.9em;
   padding: 4px 10px;
@@ -169,7 +182,7 @@
 .submit-proposal-btn {
   border: none;
   outline: none;
-  background-color: var(--yellow-variant-three);
+  background-color: #14cc60;
   font-family: var(--font-fam-one);
   font-size: 0.9em;
   padding: 4px 10px;
@@ -208,7 +221,7 @@
   align-items: center;
   width: 40px;
   height: 100%;
-  background-color: var(--yellow-variant-three);
+  background-color: #14cc60;
   border-radius: 0 10px 10px 0;
 }
 

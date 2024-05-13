@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { toast } from "react-hot-toast";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FiEdit2 } from "react-icons/fi";
@@ -9,6 +10,7 @@ import './createcourse.css'
 function CreateCourse() {
 
   const {user_id} = useSelector((state) => state.user)
+  const navigate = useNavigate();
 
   const [courseId, setCourseId] = useState("");
   const [courseName, setCourseName] = useState("");
@@ -96,8 +98,9 @@ function CreateCourse() {
       });
   
       if (questionResponse.data) {
-        toast.success("Your question has been created successfully!");
+        toast.success("Your Course has been created successfully!");
         resetQuestionForm();
+        navigate('/instructor/dashboard/courses');
       }
     } catch (error) {
       console.log(error);
@@ -123,7 +126,7 @@ function CreateCourse() {
     <div  className='create-course-main-container'>
 
 <div className="create-mealplan-request-container">
-          <span className="text-heading-type-1">Question Form</span>
+          <span className="text-heading-type-1">Add New Course</span>
           <div className="create-mealplan-first-row">
             <form className="tender-proposal-form-area">
               {/* supplier full name */}

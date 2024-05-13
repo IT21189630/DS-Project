@@ -108,7 +108,7 @@ const getContentDetailsById = asyncHandler(async (req, res) => {
         const id = req.params.id;
 
         // Find the option by ID
-        const content = await CourseModel.findById(id);
+        const content = await ContentModel.findById(id);
 
         if (content) {
             res.status(200).json(content);

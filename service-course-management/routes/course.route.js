@@ -25,7 +25,7 @@ router.get("/get-all-course-ids", getAllCourseIds);
 router.patch("/update-course/:id", updateQuestionWithOptions);
 router.post("/add-content/:id", addContentToCourse);
 router.patch("/update-content/:id", updateContent);
-router.delete("/get-course/:courseId/content/:id", deleteContent);
+router.delete("/getcourse/:courseId/content/:id", deleteContent);
 router.delete("/delete-courses/:courseId", deleteCourse);
 
 // router.get("/get-option/:id", getOptionById);
