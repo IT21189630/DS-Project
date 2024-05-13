@@ -27,10 +27,15 @@ import StudentProtectedRoute from "./pages/route-guard-student/StudentProtectedR
 import StudentDashboard from "./pages/dashboard-student/StudentDashboard";
 import StudentMainPage from "./components/student/main-page/StudentMainPage";
 import ShoppingCart from "./components/student/shopping-cart/ShoppingCart";
+import PurchasedCourse from "./components/student/course-page/PurchasedCourse";
 import Enrollments from "./components/student/enrollments/Enrollments";
 import HomePage from "./pages/home-page/HomePage";
+//notification page
+import NotificationPage from "./pages/notification/NotificationPage";
+import NotificationHistory from "./pages/notification/NotificationHistory";
 import SuccessPayment from "./components/student/payment-success/SuccessPayment";
 import PaymentUnsuccess from "./components/student/payment-unsuccess/PaymentUnsuccess";
+import MessageTemplate from "./pages/notification/MessageTemplate";
 
 function App() {
 	return (
@@ -77,6 +82,18 @@ function App() {
 							path="/admin/dashboard/inquiries/:id"
 							element={<InquiryInfo />}
 						/>
+            <Route
+              path="/admin/dashboard/notification/"
+              element={<NotificationPage />}
+            />
+            <Route
+              path="/admin/dashboard/notification/history"
+              element={<NotificationHistory />}
+            />
+            <Route
+              path="/admin/dashboard/notification/template"
+              element={<MessageTemplate />}
+            />
 					</Route>
 				</Route>
 				{/* instructor protected routes */}
@@ -127,6 +144,10 @@ function App() {
 							path="/student/dashboard/enrollments"
 							element={<Enrollments />}
 						/>
+            <Route
+              path="/student/dashboard/purchased-course/:id"
+              element={<PurchasedCourse />}
+            />
 						<Route
 							path="/student/dashboard/payment-success"
 							element={<SuccessPayment />}

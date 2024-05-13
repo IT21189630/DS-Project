@@ -64,7 +64,9 @@ function StudentMainPage() {
         ) : (
           <div className="course-partition-canvas">
             {courses.map((course) => {
-              return <CourseCard key={course._id} course={course} />;
+              if(course.courseStatus === "Approved"){
+                return <CourseCard key={course._id} course={course} />;
+              }
             })}
           </div>
         )}
