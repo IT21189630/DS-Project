@@ -10,7 +10,7 @@ function ViewCourses() {
 
   useEffect(() => {
     function getCourses() {
-      axios.get("http://localhost:3500/course/get-all-courses")
+      axios.get("http://localhost:3500/learnup/api/course-management/get-all-courses")
         .then((res) => {
           setCourses(res.data);
           setFilteredCourses(res.data); // Set filteredCourses to the initial course list

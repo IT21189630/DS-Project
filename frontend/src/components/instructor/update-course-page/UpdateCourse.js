@@ -34,7 +34,7 @@ function UpdateCourse() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3500/course/get-course/${id}`);
+                const response = await axios.get(`http://localhost:3500/learnup/api/course-management/get-course/${id}`);
                 console.log(response);
                 setCourse(response.data); // Update the course 
                 setCourseImage(response.data.courseImage);
@@ -73,7 +73,7 @@ function UpdateCourse() {
       if (editingOptionIndex !== -1) {
         // If an option is being edited, update the existing option
         const updatedOptions = [...courseContent];
-        
+
         updatedOptions[editingOptionIndex] = itemObject;
         setOptions(updatedOptions);
         setEditingOptionIndex(-1); // Reset the editing index
@@ -116,7 +116,7 @@ function UpdateCourse() {
       }
     
       try {
-        const questionResponse = await axios.patch(`http://localhost:3500/course/update-course/${id}`, {
+        const questionResponse = await axios.patch(`http://localhost:3500/learnup/api/course-management/update-course/${id}`, {
           courseId,
           courseName,
           courseImage,

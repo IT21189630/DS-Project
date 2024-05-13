@@ -85,7 +85,7 @@ function CreateCourse() {
     }
   
     try {
-      const questionResponse = await axios.post('http://localhost:3500/course/create-course', {
+      const questionResponse = await axios.post('http://localhost:3500/learnup/api/course-management/create-course', {
         courseId,
         courseName,
         courseImage,

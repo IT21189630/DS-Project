@@ -19,7 +19,7 @@ function AddContent() {
     const tenderQuestionFormHandler = async () => {
       
         try {
-          const contentResponse = await axios.post(`http://localhost:3500/course/add-content/${id}`, {
+          const contentResponse = await axios.post(`http://localhost:3500/learnup/api/course-management/add-content/${id}`, {
             lectureVideo,
             lectureName,
             lectureNote

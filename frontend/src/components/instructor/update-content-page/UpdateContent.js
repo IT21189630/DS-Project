@@ -16,7 +16,7 @@ function UpdateContent() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3500/course/get-content/${id}`);
+                const response = await axios.get(`http://localhost:3500/learnup/api/course-management/get-content/${id}`);
                 console.log(response);
                 setLectureVideo(response.data.lectureVideo); // Update the course 
                 setLectureName(response.data.lectureName);
@@ -36,7 +36,7 @@ function UpdateContent() {
         
         
           try {
-            const questionResponse = await axios.patch(`http://localhost:3500/course/update-content/${id}`, {
+            const questionResponse = await axios.patch(`http://localhost:3500/learnup/api/course-management/update-content/${id}`, {
                 lectureVideo,
                 lectureName,
                 lectureNote

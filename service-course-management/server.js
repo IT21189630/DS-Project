@@ -11,7 +11,7 @@ dbConnect()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use('/course',require('./routes/course.route'))
+app.use('/learnup/api/course-management',require('./routes/course.route'))
 
 
 app.use(errorHandler)

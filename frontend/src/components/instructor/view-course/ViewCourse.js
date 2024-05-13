@@ -33,7 +33,7 @@ function ViewCourse() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3500/course/get-course/${id}`);
+                const response = await axios.get(`http://localhost:3500/learnup/api/course-management/get-course/${id}`);
                 console.log(response);
                 setCourse(response.data); // Update the course 
                 setCourseImage(response.data.courseImage);
@@ -73,7 +73,7 @@ function ViewCourse() {
     
         if (shouldDelete) {
           try {
-            const response = await axios.delete(`http://localhost:3500/course/getcourse/${courseId}/content/${id}`);
+            const response = await axios.delete(`http://localhost:3500/learnup/api/course-management/getcourse/${courseId}/content/${id}`);
             console.log('Response status:', response.status);
     
             if (response.status === 200) {
@@ -95,7 +95,7 @@ function ViewCourse() {
     
         if (shouldDelete) {
           try {
-            const response = await axios.delete(`http://localhost:3500/course/delete-courses/${id}`);
+            const response = await axios.delete(`http://localhost:3500/learnup/api/course-management/delete-courses/${id}`);
             console.log('Response status:', response.status);
     
             if (response.status === 200) {

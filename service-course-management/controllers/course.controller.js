@@ -8,13 +8,13 @@ const createCourse = asyncHandler(async (req, res) => {
     const { courseId, courseName, courseImage, specialization , courseDescription , coursePrice , courseContent , skills , courseStatus , userId } = req.body;
 
     try {
-        // Create Options first
+        // Create Content first
         const createdContents = await ContentModel.insertMany(courseContent);
 
-        // Extract IDs of created options
+        // Extract IDs of created contents
         const contentIds = createdContents.map(option => option._id);
 
-        // Create Question and associate Option IDs
+        // Create course and associate content IDs
         const newCourse = await CourseModel.create({
             courseId,
             courseName,
@@ -107,7 +107,7 @@ const getContentDetailsById = asyncHandler(async (req, res) => {
     try {
         const id = req.params.id;
 
-        // Find the option by ID
+        // Find the content by ID
         const content = await ContentModel.findById(id);
 
         if (content) {
