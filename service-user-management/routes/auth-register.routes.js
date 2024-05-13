@@ -12,6 +12,6 @@ const { Admin } = auth_roles;
 
 router.post("/register/student", createNewStudent);
 router.post("/register/instructor", createNewInstructor);
-router.post("/register/admin", verifyRoles(Admin), createNewAdmin);
+router.post("/register/admin", createNewAdmin);
 
 module.exports = router;

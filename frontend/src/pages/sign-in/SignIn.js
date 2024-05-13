@@ -56,7 +56,7 @@ function SignIn() {
         return navigate("/admin/dashboard");
       }
       if (response.data.roles.includes(Instructor)) {
-        return navigate("/instructor/dashboard");
+        return navigate("/instructor/dashboard/courses");
       }
       if (response.data.roles.includes(Student)) {
         return navigate("/student/dashboard");

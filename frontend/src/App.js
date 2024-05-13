@@ -22,6 +22,12 @@ import InstructorDashboard from "./pages/dashboard-instructor/InstructorDashboar
 import InstructorMainPage from "./components/instructor/main-page/InstructorMainPage";
 import ContactAdmin from "./components/instructor/contact-admin/ContactAdmin";
 import InquiryDetails from "./components/instructor/inquiry-details/InquiryDetails";
+import CreateCourse from "./components/instructor/create-course-page/CreateCourse";
+import ViewCourses from "./components/instructor/view-courses/ViewCourses";
+import ViewCourse from "./components/instructor/view-course/ViewCourse";
+import UpdateCourse from "./components/instructor/update-course-page/UpdateCourse";
+import AddContent from "./components/instructor/add-new-content-page/AddContent";
+import UpdateContent from "./components/instructor/update-content-page/UpdateContent";
 // student page
 import StudentProtectedRoute from "./pages/route-guard-student/StudentProtectedRoute";
 import StudentDashboard from "./pages/dashboard-student/StudentDashboard";
@@ -64,7 +70,7 @@ function App() {
 					>
 						<Route
 							path="/admin/dashboard/"
-							element={<AdminMainPage />}
+							element={<CourseManagement />}
 						/>
 						<Route
 							path="/admin/dashboard/create-admin/"
@@ -107,8 +113,33 @@ function App() {
 					>
 						<Route
 							path="/instructor/dashboard/"
-							element={<InstructorMainPage />}
+							element={<ViewCourses />}
 						/>
+             <Route
+              path="/instructor/dashboard/create-course"
+              element={<CreateCourse />}
+            />
+            <Route
+              path="/instructor/dashboard/courses"
+              element={<ViewCourses />}
+            />
+            <Route
+              path="/instructor/dashboard/courses/course/:id"
+              element={<ViewCourse />}
+            />
+            <Route
+              path="/instructor/dashboard/courses/course/update/:id"
+              element={<UpdateCourse />}
+            />
+            <Route
+              path="/instructor/dashboard/courses/course/addcontent/:id"
+              element={<AddContent />}
+            />
+            <Route
+              path="/instructor/dashboard/courses/course/updatecontent/:id"
+              element={<UpdateContent />}
+            />
+            
 						<Route
 							path="/instructor/dashboard/contact-admin"
 							element={<ContactAdmin />}

@@ -4,37 +4,28 @@ const ContentModel = require("../models/Content.model");
 const asyncHandler = require("express-async-handler");
 
 const createCourse = asyncHandler(async (req, res) => {
-	const {
-		courseId,
-		courseName,
-		courseImage,
-		specialization,
-		courseDescription,
-		coursePrice,
-		courseContent,
-		skills,
-		courseStatus,
-	} = req.body;
+    const { courseId, courseName, courseImage, specialization , courseDescription , coursePrice , courseContent , skills , courseStatus , userId } = req.body;
 
-	try {
-		// Create Options first
-		const createdContents = await ContentModel.insertMany(courseContent);
+    try {
+        // Create Content first
+        const createdContents = await ContentModel.insertMany(courseContent);
 
-		// Extract IDs of created options
-		const contentIds = createdContents.map((option) => option._id);
+        // Extract IDs of created contents
+        const contentIds = createdContents.map(option => option._id);
 
-		// Create Question and associate Option IDs
-		const newCourse = await CourseModel.create({
-			courseId,
-			courseName,
-			courseImage,
-			specialization,
-			courseDescription,
-			coursePrice,
-			courseContent: contentIds, // Assign option IDs to the question
-			skills,
-			courseStatus: "Pending",
-		});
+        // Create course and associate content IDs
+        const newCourse = await CourseModel.create({
+            courseId,
+            courseName,
+            courseImage,
+            specialization,
+            courseDescription,
+            coursePrice,
+            courseContent: contentIds, // Assign option IDs to the question
+            skills,
+            courseStatus:'Pending',
+            userId
+        });
 
 		// Update the question field in each option to reference the new question
 		await ContentModel.updateMany(
@@ -137,8 +128,8 @@ const getContentDetailsById = asyncHandler(async (req, res) => {
 	try {
 		const id = req.params.id;
 
-		// Find the option by ID
-		const content = await CourseModel.findById(id);
+        // Find the content by ID
+        const content = await ContentModel.findById(id);
 
 		if (content) {
 			res.status(200).json(content);

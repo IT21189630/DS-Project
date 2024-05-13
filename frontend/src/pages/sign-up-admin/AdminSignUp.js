@@ -69,12 +69,7 @@ function AdminSignup() {
           password,
           email,
           phone_number: phoneNumber,
-        },{headers: {
-          Authorization: "Bearer " + token,
-          "Content-Type": "application/json",
-          },
-          credentials: "include",
-          withCredentials: true,}
+        }
       );
       if (response.data) {
         toast.success("New user account created");

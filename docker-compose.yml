@@ -13,6 +13,7 @@ services:
       - courses
       - payment
       - enrollment
+      - notification
 
   authentication:
     build: ./service-user-management/
@@ -53,3 +54,13 @@ services:
       - /app/node_modules
     env_file:
       - ./service-payment-management/.env
+
+  notification:
+    build: ./service-notification-management/
+    ports: 
+      - "4003:4003"
+    volumes: 
+      - ./service-notification-management/:/app
+      - /app/node_modules
+    env_file:
+      - ./service-notification-management/.env

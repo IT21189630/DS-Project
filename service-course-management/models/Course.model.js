@@ -53,7 +53,7 @@ const CourseSchema = new Schema({
         ref: 'Instructor'
     },
       
-});
+}, {timestamps: true});
 
 module.exports = mongoose.model("Course", CourseSchema);
 
