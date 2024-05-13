@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link,useNavigate } from 'react-router-dom';
+import {toast} from 'react-hot-toast'
 import { TextField, Button, Typography, Container, Box } from '@mui/material';
 
 const MessageTemplateForm = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
       await axios.post('http://localhost:4003/learnup/api/notification/create-template', { title, content });
-      alert('Message template created successfully');
+      toast.success("Message template created successfully!")
       setTitle('');
       setContent('');
+      navigate('/admin/dashboard/notification/template')
     } catch (error) {
       console.error('Error creating template:', error);
       alert('Failed to create message template');

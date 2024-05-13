@@ -62,7 +62,7 @@ function App() {
               element={<NotificationHistory />}
             />
             <Route
-              path="/admin/dashboard/notification/template/form"
+              path="/admin/dashboard/notification/template"
               element={<MessageTemplate />}
             />
           </Route>

@@ -21,6 +21,17 @@ const MessageTemplateList = () => {
     fetchTemplates();
   }, []);
 
+  const refreshTemplates = async () => {
+    try {
+      const response = await axios.get('http://localhost:4003/learnup/api/notification/template-list');
+      setTemplates(response.data);
+      console.log(response.data)
+    } catch (error) {
+      console.error('Error fetching templat:', error);
+      alert('Failed to fetch templates');
+    }
+  };
+
   const handleSendClick = (title, content) => {
     navigate('/admin/dashboard/notification/', { state: { title, content } });
   };
@@ -30,6 +41,9 @@ const MessageTemplateList = () => {
       <Typography variant="h5" align="center" gutterBottom>
         Templates
       </Typography>
+      <Button variant="contained" onClick={refreshTemplates} style={{ backgroundColor:"#92e3a9" }}>
+        <Typography color={'black'}>Refresh</Typography>
+      </Button>
       <Box mt={2} position="sticky" top={0} borderColor="primary.main" borderRadius={1} boxShadow={1} padding={1}>
         <List>
           {templates.map((template) => (

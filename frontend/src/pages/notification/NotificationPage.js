@@ -66,7 +66,7 @@ function NotificationPage() {
       <Button variant="contained" href="/admin/dashboard/notification/history" style={{ marginTop: 10, marginBottom: 30,marginRight:10,backgroundColor:"#92e3a9"}}>
           <Typography color={'black'}>Notification History</Typography>
       </Button>
-      <Button variant="contained" href="/admin/dashboard/notification/template/form" style={{ marginTop: 10, marginBottom: 30,backgroundColor:"#92e3a9"}}>
+      <Button variant="contained" href="/admin/dashboard/notification/template" style={{ marginTop: 10, marginBottom: 30,backgroundColor:"#92e3a9"}}>
           <Typography color={'black'}>Templates</Typography>
       </Button>
       <Grid container spacing={14}>
