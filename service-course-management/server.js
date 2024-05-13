@@ -17,6 +17,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/learnup/api/course-management", require("./routes/course.route"));
+app.use("/learnup/api/course-management/contact-admin", require("./routes/contact.routes"));
 
 app.use(errorHandler);
 app.listen(PORT, () => {

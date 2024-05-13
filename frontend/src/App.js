@@ -14,10 +14,14 @@ import AdminMainPage from "./components/admin/main-page/AdminMainPage";
 import AdminSignup from "./pages/sign-up-admin/AdminSignUp";
 import CourseManagement from "./components/admin/manage-courses/CourseManagement";
 import AdminDashboard from "./pages/dashboard-admin/AdminDashboard";
+import InstructorIncs from "./components/admin/instructor-inquiries/InstructorIncs";
+import InquiryInfo from "./components/admin/inquiry-info/InquiryInfo";
 // instructor pages
 import InstructorProtectedRoute from "./pages/route-guard-instructor/InstructorProtectedRoute";
 import InstructorDashboard from "./pages/dashboard-instructor/InstructorDashboard";
 import InstructorMainPage from "./components/instructor/main-page/InstructorMainPage";
+import ContactAdmin from "./components/instructor/contact-admin/ContactAdmin";
+import InquiryDetails from "./components/instructor/inquiry-details/InquiryDetails";
 // student page
 import StudentProtectedRoute from "./pages/route-guard-student/StudentProtectedRoute";
 import StudentDashboard from "./pages/dashboard-student/StudentDashboard";
@@ -65,6 +69,14 @@ function App() {
 							path="/admin/dashboard/course-management/"
 							element={<CourseManagement />}
 						/>
+						<Route
+							path="/admin/dashboard/inquiries/"
+							element={<InstructorIncs />}
+						/>
+						<Route
+							path="/admin/dashboard/inquiries/:id"
+							element={<InquiryInfo />}
+						/>
 					</Route>
 				</Route>
 				{/* instructor protected routes */}
@@ -79,6 +91,14 @@ function App() {
 						<Route
 							path="/instructor/dashboard/"
 							element={<InstructorMainPage />}
+						/>
+						<Route
+							path="/instructor/dashboard/contact-admin"
+							element={<ContactAdmin />}
+						/>
+						<Route
+							path="/instructor/dashboard/inquiries/:id"
+							element={<InquiryDetails />}
 						/>
 					</Route>
 				</Route>

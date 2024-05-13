@@ -14,9 +14,9 @@ const adminSidebarData = [
 		link: "/admin/dashboard/course-management/",
 	},
 	{
-		text: "Admin Link 3",
+		text: "Inquiries",
 		icon: <FaLink />,
-		link: "/admin/link",
+		link: "/admin/dashboard/inquiries/",
 	},
 	{
 		text: "Admin Link 4",
