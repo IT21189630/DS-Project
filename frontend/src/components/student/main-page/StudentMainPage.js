@@ -23,7 +23,7 @@ function StudentMainPage() {
     setLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:3500/learnup/api/course-management/get-all-courses"
+        "http://localhost:3500/learnup/api/course-management/get-all-approved-courses"
       );
       if (response.data) {
         setCourses(response.data);

@@ -35,7 +35,6 @@ app.use(
   "/learnup/api/user-management/auth",
   require("./routes/auth-register.routes")
 );
-
 app.use(verifyJWT);
 app.use(errorHandler);
 
