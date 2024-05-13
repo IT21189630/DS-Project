@@ -19,15 +19,11 @@ const adminSidebarData = [
 		link: "/admin/dashboard/inquiries/",
 	},
 	{
-		text: "Admin Link 4",
+		text: "Notifications",
 		icon: <FaLink />,
-		link: "/admin/link",
+		link: "/admin/dashboard/notification/",
 	},
-	{
-		text: "Admin Link 5",
-		icon: <FaLink />,
-		link: "/admin/link",
-	},
+
 ];
 
 export default adminSidebarData;

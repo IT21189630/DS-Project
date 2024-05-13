@@ -5,9 +5,11 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import SignupBanner from "../../images/admin-signup.jpg";
 import "./admin-signup.styles.css";
+import {useSelector} from 'react-redux'
 
 function AdminSignup() {
   const navigate = useNavigate();
+  const {token} = useSelector((state) => state.user)
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [username, setUserName] = useState("");
@@ -67,7 +69,12 @@ function AdminSignup() {
           password,
           email,
           phone_number: phoneNumber,
-        }
+        },{headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,}
       );
       if (response.data) {
         toast.success("New user account created");
